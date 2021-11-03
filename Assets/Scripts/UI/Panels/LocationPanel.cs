@@ -7,6 +7,7 @@ namespace UI.Panels
 {
     public class LocationPanel : MonoBehaviour, IPanel
     {
+        [SerializeField] private string caseNumberText;
         [SerializeField] private RawImage mapImage;
         [SerializeField] private TMP_InputField notesInput;
         public void ProcessInfo()

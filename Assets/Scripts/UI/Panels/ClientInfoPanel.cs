@@ -8,6 +8,7 @@ namespace UI.Panels
 {
     public class ClientInfoPanel : MonoBehaviour, IPanel
     {
+        private const string CASE_ID_LOC = "CASE ID: ";
         [SerializeField] private TMP_Text caseNumberText;
         [SerializeField] private TMP_InputField firstName;
         [SerializeField] private TMP_InputField lastName;
@@ -15,7 +16,7 @@ namespace UI.Panels
 
         private void OnEnable()
         {
-            caseNumberText.text = "CASE ID: " + UIManager.Instance.activeCase.id;
+            caseNumberText.text = CASE_ID_LOC + UIManager.Instance.activeCase.id;
         }
 
         public void ProcessInfo()

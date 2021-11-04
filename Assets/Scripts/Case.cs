@@ -1,4 +1,4 @@
-using UnityEngine.UI;
+using UnityEngine;
 
 [System.Serializable]
 public class Case
@@ -9,5 +9,5 @@ public class Case
     public string location;
     public string locationNotes;
     public string photoNotes;
-    public RawImage photoTaken;
+    public Texture photoTaken;
 }

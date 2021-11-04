@@ -548,7 +548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &175807418
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2382,7 +2382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -694}
+  m_AnchoredPosition: {x: 0, y: -308.22018}
   m_SizeDelta: {x: -100, y: -2145.3452}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &539878583
@@ -6052,7 +6052,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1703}
+  m_AnchoredPosition: {x: 0, y: -1292.3047}
   m_SizeDelta: {x: -100, y: 65.4989}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1277548766
@@ -6299,6 +6299,7 @@ MonoBehaviour:
   takenPhoto: {fileID: 893867881}
   notes: {fileID: 457401088}
   caseNumberText: {fileID: 155833279}
+  overviewPanel: {fileID: 607585403}
 --- !u!1 &1356883800
 GameObject:
   m_ObjectHideFlags: 0
@@ -7034,7 +7035,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BACK
+  m_text: SUBMIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4c2c0356bdda497cb0ad5d778ecafaa, type: 2}
   m_sharedMaterial: {fileID: -242375745683068885, guid: d4c2c0356bdda497cb0ad5d778ecafaa, type: 2}
@@ -7894,7 +7895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1505.4397}
+  m_AnchoredPosition: {x: 0, y: -1076.6737}
   m_SizeDelta: {x: -100, y: 140.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1603992798
@@ -8076,8 +8077,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 919261541}
   m_HandleRect: {fileID: 919261540}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.7420684
+  m_Value: 0.99999964
+  m_Size: 0.74206835
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8323,18 +8324,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 607585403}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1343752188}
         m_TargetAssemblyTypeName: UI.Panels.PhotoPanel, Assembly-CSharp
         m_MethodName: ProcessInfo
@@ -9855,7 +9844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1117}
+  m_AnchoredPosition: {x: 0, y: -812.81165}
   m_SizeDelta: {x: -100, y: 267.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2087825591
@@ -9971,7 +9960,7 @@ GameObject:
   - component: {fileID: 2100808864}
   - component: {fileID: 2100808863}
   m_Layer: 5
-  m_Name: Back Button
+  m_Name: Submit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10041,10 +10030,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 607585403}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 542572125}
+        m_TargetAssemblyTypeName: UI.Panels.OverviewPanel, Assembly-CSharp
+        m_MethodName: ProcessInfo
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

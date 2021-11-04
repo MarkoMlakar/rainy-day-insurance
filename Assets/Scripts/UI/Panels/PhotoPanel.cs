@@ -12,6 +12,7 @@ namespace UI.Panels
         [SerializeField] private RawImage takenPhoto;
         [SerializeField] private TMP_InputField notes;
         [SerializeField] private TMP_Text caseNumberText;
+        [SerializeField] private GameObject overviewPanel;
 
         private void OnEnable()
         {
@@ -23,7 +24,8 @@ namespace UI.Panels
             if (string.IsNullOrEmpty(notes.text) || takenPhoto.texture == null) return;
 
             UIManager.Instance.activeCase.photoNotes = notes.text;
-            UIManager.Instance.activeCase.photoTaken = takenPhoto;
+            UIManager.Instance.activeCase.photoTaken = takenPhoto.texture;
+            overviewPanel.SetActive(true);
         }
 
         public void TakePicture( int maxSize )

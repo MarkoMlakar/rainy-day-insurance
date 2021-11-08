@@ -717,7 +717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41757d2d8969644769289c6e995bb561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caseNumberInput: {fileID: 226610830}
 --- !u!1 &197460942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,6 +1655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 416598312}
   - component: {fileID: 416598313}
+  - component: {fileID: 416598314}
   m_Layer: 5
   m_Name: Client_Info_Panel
   m_TagString: Untagged
@@ -1703,10 +1703,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58118a9426c6642248f3cbe077279d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  locationPanel: {fileID: 1504659537}
+--- !u!114 &416598314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416598311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783b951c77a448b4b403945c1edd26df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientInfoPanel: {fileID: 416598313}
   caseNumberText: {fileID: 1411330293}
   firstName: {fileID: 892485478}
   lastName: {fileID: 768968284}
-  locationPanel: {fileID: 1504659537}
+  nextButton: {fileID: 1171478607}
 --- !u!1 &451163568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,13 +2625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e4b31c134f2450084c8ecdf52cd00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caseNumberText: {fileID: 688494872}
-  nameText: {fileID: 329583764}
-  dateText: {fileID: 2147426981}
-  locationText: {fileID: 175807419}
-  locationNotesText: {fileID: 1603992798}
-  imageNotesText: {fileID: 2087825591}
-  image: {fileID: 539878583}
 --- !u!1 &607585403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2627,6 +2634,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 607585404}
+  - component: {fileID: 607585405}
   m_Layer: 5
   m_Name: Overview_Container
   m_TagString: Untagged
@@ -2656,6 +2664,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &607585405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607585403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72677e2e5c974b41aba351370099857a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overviewPanel: {fileID: 542572125}
+  caseNumberText: {fileID: 688494872}
+  nameText: {fileID: 329583764}
+  dateText: {fileID: 2147426981}
+  locationText: {fileID: 175807419}
+  locationNotesText: {fileID: 1603992798}
+  imageNotesText: {fileID: 2087825591}
+  image: {fileID: 539878583}
+  submitButton: {fileID: 2100808863}
 --- !u!1 &608041316
 GameObject:
   m_ObjectHideFlags: 0
@@ -3456,31 +3485,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 737898267}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 607585403}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1038530493}
-        m_TargetAssemblyTypeName: UI.Panels.SelectPanel, Assembly-CSharp
-        m_MethodName: ProcessInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &737898267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3638,19 +3643,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 751068771}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1343752188}
-        m_TargetAssemblyTypeName: UI.Panels.PhotoPanel, Assembly-CSharp
-        m_MethodName: TakePicture
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 512
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &768968282
 GameObject:
   m_ObjectHideFlags: 0
@@ -5209,7 +5202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91aeaff8e9ceb49c588c6ceff5f9e839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  informationText: {fileID: 197460944}
 --- !u!1 &1101404835
 GameObject:
   m_ObjectHideFlags: 0
@@ -5683,19 +5675,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1171478608}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 416598313}
-        m_TargetAssemblyTypeName: UI.Panels.ClientInfoPanel, Assembly-CSharp
-        m_MethodName: ProcessInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1171478608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6250,6 +6230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1343752187}
   - component: {fileID: 1343752188}
+  - component: {fileID: 1343752189}
   m_Layer: 5
   m_Name: Client_Photo_Panel
   m_TagString: Untagged
@@ -6296,10 +6277,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cabd58c4ae5f44e39921b61f07a5a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  overviewPanel: {fileID: 607585403}
+  photoPanelView: {fileID: 1343752189}
+  photoMaxSize: 512
+--- !u!114 &1343752189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343752186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6fc336134aa4ace9114f9285df4c096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photoPanel: {fileID: 1343752188}
   takenPhoto: {fileID: 893867881}
   notes: {fileID: 457401088}
   caseNumberText: {fileID: 155833279}
-  overviewPanel: {fileID: 607585403}
+  nextButton: {fileID: 1669336593}
+  takePhotoButton: {fileID: 751068773}
 --- !u!1 &1356883800
 GameObject:
   m_ObjectHideFlags: 0
@@ -7411,6 +7409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1504659536}
   - component: {fileID: 1504659537}
+  - component: {fileID: 1504659538}
   m_Layer: 5
   m_Name: Client_Location_Panel
   m_TagString: Untagged
@@ -7456,14 +7455,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc85316e714f74c018eee07168e1ad7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caseNumberText: {fileID: 1412691399}
-  mapImage: {fileID: 64758784}
-  notesInput: {fileID: 2005954964}
   mapApiKey: AIzaSyBnXz4yVqVi-JFcUX9yfS0eUAAbMKR3pEA
   latitude: 15
   longitude: 15
   mapZoom: 15
   mapSize: 400
+  locationPanelView: {fileID: 1504659538}
+--- !u!114 &1504659538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504659535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0282d49f1ed8475da1d9347a45f17f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locationPanel: {fileID: 1504659537}
+  caseNumberText: {fileID: 1412691399}
+  mapImage: {fileID: 64758784}
+  notesInput: {fileID: 2005954964}
+  nextButton: {fileID: 655563748}
 --- !u!1 &1508305647
 GameObject:
   m_ObjectHideFlags: 0
@@ -8077,8 +8091,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 919261541}
   m_HandleRect: {fileID: 919261540}
   m_Direction: 2
-  m_Value: 0.99999964
-  m_Size: 0.74206835
+  m_Value: 1
+  m_Size: 0.7420684
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9206,31 +9220,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1877229139}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1038530491}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 186239130}
-        m_TargetAssemblyTypeName: UI.Panels.SearchPanel, Assembly-CSharp
-        m_MethodName: ProcessInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1877229139
 MonoBehaviour:
   m_ObjectHideFlags: 0

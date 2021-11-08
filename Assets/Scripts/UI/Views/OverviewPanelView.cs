@@ -1,17 +1,22 @@
-using System;
+﻿using System;
 using Managers;
+using Models;
 using TMPro;
-using UI.Interfaces;
+using UI.Controllers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Panels
+namespace UI.Views
 {
-    public class OverviewPanel : MonoBehaviour, IPanel
+    public class OverviewPanelView: MonoBehaviour
     {
         private const string CASE_NUMBER_TEXT_LOC = "CASE NUMBER: ";
         private const string LOCATION_NOTES_TEXT_LOC = "LOCATION NOTES: \n";
         private const string IMAGE_NOTES_TEXT_LOC = "PHOTO NOTES: \n";
+
+        [Header("Controller")] 
+        [SerializeField] private OverviewPanel overviewPanel;
+        [Header("View elements")]
         [SerializeField] private TMP_Text caseNumberText;
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text dateText;
@@ -19,6 +24,14 @@ namespace UI.Panels
         [SerializeField] private TMP_Text locationNotesText;
         [SerializeField] private TMP_Text imageNotesText;
         [SerializeField] private RawImage image;
+        [SerializeField] private Button submitButton;
+
+        private ICallbacks _callbacks;
+
+        private void Start()
+        {
+            _callbacks = overviewPanel;
+        }
 
         private void OnEnable()
         {
@@ -27,12 +40,22 @@ namespace UI.Panels
             dateText.text = DateTime.Today.ToString();
             locationNotesText.text = LOCATION_NOTES_TEXT_LOC + UIManager.Instance.activeCase.locationNotes;
             imageNotesText.text = IMAGE_NOTES_TEXT_LOC + UIManager.Instance.activeCase.photoNotes;
-            image.texture = UIManager.Instance.activeCase.photoTaken;
+            image.texture = UIManager.Instance.activeCase.photoTaken;   
+            submitButton.onClick.AddListener(() =>
+            {
+                _callbacks.OnProcessInfo(UIManager.Instance.activeCase);
+            });
         }
 
-        public void ProcessInfo()
+        private void OnDisable()
         {
-            print("<color=green>Submit to AWS </color>");
+            submitButton.onClick.RemoveAllListeners();
+        }
+
+
+        public interface ICallbacks
+        {
+            void OnProcessInfo(Case newCase);
         }
     }
 }

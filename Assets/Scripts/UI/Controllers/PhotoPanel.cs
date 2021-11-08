@@ -1,34 +1,17 @@
 using Managers;
-using TMPro;
-using UI.Interfaces;
+using UI.Views;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace UI.Panels
+namespace UI.Controllers
 {
-    public class PhotoPanel : MonoBehaviour, IPanel
+    public class PhotoPanel : MonoBehaviour, PhotoPanelView.ICallbacks
     {
-        private const string CASE_STRING_LOC = "CASE NUMBER: ";
-        [SerializeField] private RawImage takenPhoto;
-        [SerializeField] private TMP_InputField notes;
-        [SerializeField] private TMP_Text caseNumberText;
         [SerializeField] private GameObject overviewPanel;
+        [Header("View")] 
+        [SerializeField] private PhotoPanelView photoPanelView;
 
-        private void OnEnable()
-        {
-            caseNumberText.text = CASE_STRING_LOC + UIManager.Instance.activeCase.id;
-        }
-
-        public void ProcessInfo()
-        {
-            if (string.IsNullOrEmpty(notes.text) || takenPhoto.texture == null) return;
-
-            UIManager.Instance.activeCase.photoNotes = notes.text;
-            UIManager.Instance.activeCase.photoTaken = takenPhoto.texture;
-            overviewPanel.SetActive(true);
-        }
-
-        public void TakePicture( int maxSize )
+        [SerializeField] private int photoMaxSize;
+        void PhotoPanelView.ICallbacks.OnTakePhoto()
         {
             NativeCamera.Permission permission = NativeCamera.TakePicture( ( path ) =>
             {
@@ -36,7 +19,7 @@ namespace UI.Panels
                 if( path != null )
                 {
                     // Create a Texture2D from the captured image
-                    Texture2D texture = NativeCamera.LoadImageAtPath( path, maxSize );
+                    Texture2D texture = NativeCamera.LoadImageAtPath( path, photoMaxSize );
                     if( texture == null )
                     {
                         Debug.Log( "Couldn't load texture from " + path );
@@ -61,12 +44,18 @@ namespace UI.Panels
                     // it will only be freed after a scene change
                     Destroy( texture, 5f );
                     */
-                    takenPhoto.texture = texture;
-                    takenPhoto.gameObject.SetActive(true);
+                    photoPanelView.SetTakenPhoto(texture);
                 }
-            }, maxSize );
+            }, photoMaxSize );
 
-            Debug.Log( "Permission result: " + permission );
+            Debug.Log( "Permission result: " + permission );        
+        }
+
+        void PhotoPanelView.ICallbacks.OnProcessInfo(string photoNotes, Texture photo)
+        {
+            UIManager.Instance.activeCase.photoNotes = photoNotes;
+            UIManager.Instance.activeCase.photoTaken = photo;
+            overviewPanel.SetActive(true);
         }
     }
 }

@@ -1,25 +1,21 @@
 using System.Collections;
 using Managers;
-using TMPro;
-using UI.Interfaces;
+using UI.Views;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
-namespace UI.Panels
+namespace UI.Controllers
 {
-    public class LocationPanel : MonoBehaviour, IPanel
+    public class LocationPanel : MonoBehaviour, LocationPanelView.ICallbacks
     {
         private const string BASE_URL = "https://maps.googleapis.com/maps/api/staticmap?";
-        private const string CASE_STRING_LOC = "CASE NUMBER: ";
-        [SerializeField] private TMP_Text caseNumberText;
-        [SerializeField] private RawImage mapImage;
-        [SerializeField] private TMP_InputField notesInput;
         [SerializeField] private string mapApiKey;
         [SerializeField] private float latitude;
         [SerializeField] private float longitude;
         [SerializeField] private int mapZoom;
         [SerializeField] private int mapSize;
+        [Header("View")] 
+        [SerializeField] private LocationPanelView locationPanelView;
 
         private string _constructedURL;
         private IEnumerator Start()
@@ -30,7 +26,7 @@ namespace UI.Panels
             if (!Input.location.isEnabledByUser)
             {
                 print("<color=red>Location services are not enabled</color>");
-                notesInput.text = "Location services are not enabled";
+                locationPanelView.SetError("Location services are not enabled");
 
                 yield break;
             }
@@ -50,7 +46,7 @@ namespace UI.Panels
             if (maxWait < 1)
             {
                 print("<color=red>Timed out</color>");
-                notesInput.text = "Timed out";
+                locationPanelView.SetError("Timed out");
 
                 yield break;
             }
@@ -59,26 +55,19 @@ namespace UI.Panels
             if (Input.location.status == LocationServiceStatus.Failed)
             {
                 print("<color=red>Unable to determine device location</color>");
-                notesInput.text = "Unable to determine device location";
+                locationPanelView.SetError("Unable to determine device location");
                 yield break;
             }
             
             latitude = Input.location.lastData.latitude;
             longitude = Input.location.lastData.longitude;
-            notesInput.text = latitude +  "    " + longitude;
+            locationPanelView.SetError(latitude +  "    " + longitude);
             
             // Stops the location service if there is no need to query location updates continuously.
             Input.location.Stop();
             // Download the image
             StartCoroutine(GetMapImage());
         }
-
-        private void OnEnable()
-        {
-            caseNumberText.text = CASE_STRING_LOC + UIManager.Instance.activeCase.id;
-        }
-        
-        
         private IEnumerator GetMapImage()
         {
             _constructedURL = BASE_URL +
@@ -92,15 +81,12 @@ namespace UI.Panels
                 Debug.Log(www.error);
             }
             else {
-                mapImage.texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+                locationPanelView.SetImage(((DownloadHandlerTexture)www.downloadHandler).texture);
             }
         }
-
-        public void ProcessInfo()
+        void LocationPanelView.ICallbacks.OnProcessInfo(string locationNotes)
         {
-            if (string.IsNullOrEmpty(notesInput.text)) return;
-
-            UIManager.Instance.activeCase.locationNotes = notesInput.text;
+            UIManager.Instance.activeCase.locationNotes = locationNotes;
         }
     }
 }

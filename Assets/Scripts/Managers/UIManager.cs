@@ -1,4 +1,5 @@
-using UI.Panels;
+using Models;
+using UI.Controllers;
 using UnityEngine;
 namespace Managers
 {

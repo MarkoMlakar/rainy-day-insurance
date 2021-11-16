@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "699580985102",
+    "project_id": "rainydayinsurance-330819",
+    "storage_bucket": "rainydayinsurance-330819.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699580985102:android:01d2eb702e855aa151f15f",
+        "android_client_info": {
+          "package_name": "com.mm.RainyDayInsurance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699580985102-746rg3qn6br2ft9djongpr5a559a0afg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdTsvM8PXjEXW_AcmdTZil6nqE456bVY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "699580985102-746rg3qn6br2ft9djongpr5a559a0afg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "699580985102-ouoff79osbqqm6f17ocfl0auspgvl0th.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mm.RainyDayInsurance"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

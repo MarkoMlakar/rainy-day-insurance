@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>699580985102-ouoff79osbqqm6f17ocfl0auspgvl0th.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.699580985102-ouoff79osbqqm6f17ocfl0auspgvl0th</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAKoH1_-2KRU8p4HmbJaO9yc5w1CfWWD18</string>
+	<key>GCM_SENDER_ID</key>
+	<string>699580985102</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mm.RainyDayInsurance</string>
+	<key>PROJECT_ID</key>
+	<string>rainydayinsurance-330819</string>
+	<key>STORAGE_BUCKET</key>
+	<string>rainydayinsurance-330819.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:699580985102:ios:3efb516f8e0d8a5a51f15f</string>
+</dict>
+</plist>

@@ -40,7 +40,9 @@ namespace UI.Views
             dateText.text = DateTime.Today.ToString();
             locationNotesText.text = LOCATION_NOTES_TEXT_LOC + UIManager.Instance.activeCase.locationNotes;
             imageNotesText.text = IMAGE_NOTES_TEXT_LOC + UIManager.Instance.activeCase.photoNotes;
-            image.texture = UIManager.Instance.activeCase.photoTaken;   
+            Texture2D reconstructedImage = new Texture2D(1, 1);
+            reconstructedImage.LoadImage(UIManager.Instance.activeCase.photoTaken);
+            image.texture = reconstructedImage;   
             submitButton.onClick.AddListener(() =>
             {
                 _callbacks.OnProcessInfo(UIManager.Instance.activeCase);

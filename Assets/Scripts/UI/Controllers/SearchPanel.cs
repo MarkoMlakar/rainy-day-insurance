@@ -1,3 +1,4 @@
+using Managers;
 using UI.Views;
 using UnityEngine;
 
@@ -5,9 +6,14 @@ namespace UI.Controllers
 {
     public class SearchPanel : MonoBehaviour, SearchPanelView.ICallbacks
     {
-        void SearchPanelView.ICallbacks.OnProcessInfo()
+        [SerializeField] private SelectPanel selectPanel;
+        void SearchPanelView.ICallbacks.OnProcessInfo(string caseNumber)
         {
-            throw new System.NotImplementedException();
+            UIManager.Instance.RetrieveCase(caseNumber,
+                () =>
+                {
+                    selectPanel.gameObject.SetActive(true);
+                });
         }
     }
 }

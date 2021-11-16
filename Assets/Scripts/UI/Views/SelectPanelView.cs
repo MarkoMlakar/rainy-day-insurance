@@ -1,4 +1,5 @@
 ﻿using System;
+using Managers;
 using TMPro;
 using UI.Controllers;
 using UnityEngine;
@@ -26,6 +27,8 @@ namespace UI.Views
             {
                 _callbacks.OnProcessInfo();
             });
+            informationText.text = UIManager.Instance.activeCase.name + "\n" + 
+                                   UIManager.Instance.activeCase.locationNotes;
         }
 
         private void OnDisable()

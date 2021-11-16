@@ -18,14 +18,14 @@ namespace UI.Views
 
         private void Start()
         {
-            throw new NotImplementedException();
+            _callbacks = searchPanel;
         }
 
         private void OnEnable()
         {
             searchButton.onClick.AddListener(() =>
             {
-                _callbacks.OnProcessInfo();
+                _callbacks.OnProcessInfo(caseNumberInput.text);
             });
         }
 
@@ -35,7 +35,7 @@ namespace UI.Views
         }
         public interface ICallbacks
         {
-            void OnProcessInfo();
+            void OnProcessInfo(string caseNumberInput);
         }
     }
 }

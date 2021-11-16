@@ -11,6 +11,6 @@ namespace Models
         public string location;
         public string locationNotes;
         public string photoNotes;
-        public Texture photoTaken;
+        public byte[] photoTaken;
     }
 }

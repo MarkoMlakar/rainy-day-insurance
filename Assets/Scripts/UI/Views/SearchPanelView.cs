@@ -13,6 +13,7 @@ namespace UI.Views
         [Header("View elements")]
         [SerializeField] private TMP_InputField caseNumberInput;
         [SerializeField] private Button searchButton;
+        [SerializeField] private Button backButton;
 
         private ICallbacks _callbacks;
 
@@ -27,6 +28,11 @@ namespace UI.Views
             {
                 _callbacks.OnProcessInfo(caseNumberInput.text);
             });
+            
+            backButton.onClick.AddListener(() =>
+            {
+                _callbacks.OnBack();
+            });
         }
 
         private void OnDisable()
@@ -36,6 +42,7 @@ namespace UI.Views
         public interface ICallbacks
         {
             void OnProcessInfo(string caseNumberInput);
+            void OnBack();
         }
     }
 }

@@ -11,7 +11,10 @@ namespace Managers
     public class UIManager : MonoBehaviour
     {
         private static UIManager _instance;
-
+        
+        [SerializeField] private ClientInfoPanel clientInfoPanel;
+        
+        public Case activeCase;
         public static UIManager Instance
         {
             get
@@ -22,26 +25,17 @@ namespace Managers
                 return _instance;
             }
         }
+
         
-        [SerializeField] private ClientInfoPanel clientInfoPanel;
-        [SerializeField] private GameObject borderPanel;
-
-        public Case activeCase;
-        private void Awake()
-        {
-            _instance = this;
-        }
-
         public void CreateNewCase()
         {
             activeCase = new Case();
             int randomCaseId = Random.Range(0, 1000);
             activeCase.id = randomCaseId.ToString();
             clientInfoPanel.gameObject.SetActive(true);
-            borderPanel.SetActive(true);
         }
 
-        public void SubmitCase(Case newCase)
+        public void SubmitCase(Case newCase, Action onComplete=null, Action onError = null)
         {
             BinaryFormatter bf = new BinaryFormatter();
             string filePath = Application.persistentDataPath + "/case#" + newCase.id + ".dat";
@@ -49,15 +43,20 @@ namespace Managers
             bf.Serialize(file, newCase);
             file.Close();
             Stream dataStream = new FileStream(filePath, FileMode.Open);
-            print("Path: " + Application.persistentDataPath);
             
             // Upload case file to Firebase
-            FirebaseManager.Instance.UploadToFirebaseStorage("CaseFiles/", dataStream, "/case#" + newCase.id + ".dat");
+            FirebaseManager.Instance.UploadToFirebaseStorage("CaseFiles/", dataStream,
+                "/case#" + newCase.id + ".dat",onComplete,onError );
         }
 
-        public void RetrieveCase(string caseId, Action onComplete=null)
+        public void RetrieveCase(string caseId, Action onComplete=null, Action onError = null)
         {
-            FirebaseManager.Instance.DownloadFromFirebaseStorage("CaseFiles", caseId, onComplete);
+            FirebaseManager.Instance.DownloadFromFirebaseStorage("CaseFiles", 
+                caseId, onComplete, onError);
+        }
+        private void Awake()
+        {
+            _instance = this;
         }
     }
 }

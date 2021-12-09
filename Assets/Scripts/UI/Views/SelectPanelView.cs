@@ -14,6 +14,8 @@ namespace UI.Views
         [Header("View elements")]
         [SerializeField] private TMP_Text informationText;
         [SerializeField] private Button acceptButton;
+        [SerializeField] private Button backButton;
+
 
         private ICallbacks _callbacks;
         private void Start()
@@ -27,6 +29,10 @@ namespace UI.Views
             {
                 _callbacks.OnProcessInfo();
             });
+            backButton.onClick.AddListener(() =>
+            {
+                _callbacks.OnBack();
+            });
             informationText.text = UIManager.Instance.activeCase.name + "\n" + 
                                    UIManager.Instance.activeCase.locationNotes;
         }
@@ -39,6 +45,7 @@ namespace UI.Views
         public interface ICallbacks
         {
             void OnProcessInfo();
+            void OnBack();
         }
     }
 }

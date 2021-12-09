@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading;
 using System.Threading.Tasks;
 using Firebase.Extensions;
 using Firebase.Storage;
@@ -39,10 +38,11 @@ namespace Managers
             _storageRef = _storage.RootReference;
         }
 
-        public void UploadToFirebaseStorage(string bucketDirectory, Stream dataStream, string fileName)
+        public void UploadToFirebaseStorage(string bucketDirectory, Stream dataStream, string fileName, Action onComplete, Action onError)
         {
             StorageReference caseFileRef = _storageRef.Child(bucketDirectory + "/" + fileName);
-            caseFileRef.PutStreamAsync(dataStream)
+            caseFileRef
+                .PutStreamAsync(dataStream)
                 .ContinueWithOnMainThread((Task<StorageMetadata> task) =>
                 {
                     if (task.IsFaulted || task.IsCanceled)
@@ -51,25 +51,22 @@ namespace Managers
                     }
                     else
                     {
-                        Debug.Log("Successfully uploaded to storage");
                         SceneManager.LoadScene(0);
                     }
                 });
         }
 
-        public void DownloadFromFirebaseStorage(string bucketDirectory, string fileId, Action onComplete = null) 
+        public void DownloadFromFirebaseStorage(string bucketDirectory, string fileId, Action onComplete = null, 
+            Action onError = null) 
         {
             _storageRef.Child(bucketDirectory + "/" + "case#"+fileId+".dat")
                 .GetBytesAsync(MAX_ALLOWED_SIZE)
                 .ContinueWithOnMainThread(task => {
                 if (task.IsFaulted || task.IsCanceled) {
-                    Debug.LogException(task.Exception);
-                    // Uh-oh, an error occurred!
+                    onError?.Invoke();
                 }
                 else {
                     byte[] fileContents = task.Result;
-                    Debug.Log("Finished downloading!");
-                    
                     using (MemoryStream memory = new MemoryStream(fileContents))
                     {
                         BinaryFormatter bf = new BinaryFormatter();

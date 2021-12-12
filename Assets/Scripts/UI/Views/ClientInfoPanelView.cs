@@ -14,42 +14,63 @@ namespace UI.Views
         [SerializeField] private ClientInfoPanel clientInfoPanel;
         [Header("View elements")]
         [SerializeField] private TMP_Text caseNumberText;
+        [SerializeField] private TMP_Text firstNameErrorText;
+        [SerializeField] private TMP_Text lastNameErrorText;
         [SerializeField] private TMP_InputField firstName;
         [SerializeField] private TMP_InputField lastName;
         [SerializeField] private Button nextButton;
+        [SerializeField] private Button backButton;
+        [SerializeField] private GameObject loading;
 
         private ICallbacks _callbacks;
+        
+        public interface ICallbacks
+        {
+            void OnProcessInfo(string firstName, string lastName);
+            void OnBack();
+        }
+        
+        public void SetLoading(bool isLoading)
+        {
+            loading.SetActive(isLoading);
+        }
         
         private void Start()
         {
             _callbacks = clientInfoPanel;
-        }
-        private void OnEnable()
-        {
-            caseNumberText.text = CASE_ID_LOC + UIManager.Instance.activeCase.id;
             
             nextButton.onClick.AddListener(() =>
             {
                 if (IsNullOrEmpty(firstName.text) || IsNullOrEmpty(lastName.text))
                 {
-                    print("<color=red>First name or last name is empty and we can not continue</color>");
-                    // TODO: Display the error message on the screen
+                    if (IsNullOrEmpty(firstName.text))
+                    {
+                        firstNameErrorText.text = "Please enter the first name";
+                    }  
+                    else if(IsNullOrEmpty(lastName.text))
+                    {
+                        lastNameErrorText.text = "Please enter the last name";
+                    }
                     return;
                 }
                 _callbacks.OnProcessInfo(firstName.text, lastName.text);
-                gameObject.SetActive(false);
             });
+            
+            backButton.onClick.AddListener(() => 
+            {
+                _callbacks.OnBack();
+            });
+        }
+        private void OnEnable()
+        {
+            caseNumberText.text = CASE_ID_LOC + UIManager.Instance.activeCase.id;
+           
         }
 
         private void OnDisable()
         {
-            nextButton.onClick.RemoveAllListeners();
             firstName.text = Empty;
             lastName.text = Empty;
-        }
-        public interface ICallbacks
-        {
-            void OnProcessInfo(string firstName, string lastName);
         }
     }
 }

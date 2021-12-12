@@ -10,6 +10,8 @@ namespace UI.Controllers
         [Header("View")] 
         [SerializeField] private PhotoPanelView photoPanelView;
 
+        [SerializeField] private UiTweener uiTweener;
+
         [SerializeField] private int photoMaxSize;
 
         private string _imagePath;
@@ -44,6 +46,11 @@ namespace UI.Controllers
             byte[] imageData = img.EncodeToPNG();
             UIManager.Instance.activeCase.photoTaken = imageData;
             overviewPanel.SetActive(true);
+        }
+
+        void PhotoPanelView.ICallbacks.OnBack()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

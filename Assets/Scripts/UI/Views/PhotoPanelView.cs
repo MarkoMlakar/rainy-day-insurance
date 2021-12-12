@@ -17,6 +17,7 @@ namespace UI.Views
         [SerializeField] private TMP_Text caseNumberText;
         [SerializeField] private Button nextButton;
         [SerializeField] private Button takePhotoButton;
+        [SerializeField] private Button backButton;
 
 
         private ICallbacks _callbacks;
@@ -24,20 +25,25 @@ namespace UI.Views
         private void Start()
         {
             _callbacks = photoPanel;
-        }
-
-        private void OnEnable()
-        {
-            caseNumberText.text = CASE_STRING_LOC + UIManager.Instance.activeCase.id;
+            
             takePhotoButton.onClick.AddListener(() =>
             {
                 _callbacks.OnTakePhoto();
             });
             nextButton.onClick.AddListener(() =>
             {
-                if (string.IsNullOrEmpty(notes.text) || takenPhoto.texture == null) return;
                 _callbacks.OnProcessInfo(notes.text, takenPhoto.texture);
             });
+            
+            backButton.onClick.AddListener(() =>
+            {
+                _callbacks.OnBack();
+            });
+        }
+
+        private void OnEnable()
+        {
+            caseNumberText.text = CASE_STRING_LOC + UIManager.Instance.activeCase.id;
         }
 
         private void OnDisable()
@@ -56,6 +62,7 @@ namespace UI.Views
         {
             void OnTakePhoto();
             void OnProcessInfo(string photoNotes, Texture photo);
+            void OnBack();
         }
     }
 }

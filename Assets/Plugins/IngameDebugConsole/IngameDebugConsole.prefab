@@ -1266,6 +1266,8 @@ MonoBehaviour:
   toggleKey: 96
   enableSearchbar: 1
   topSearchbarMinWidth: 360
+  captureLogTimestamps: 0
+  alwaysDisplayTimestamps: 0
   clearCommandAfterExecution: 1
   commandHistorySize: 15
   showCommandSuggestions: 1
@@ -1325,7 +1327,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transformComponent: {fileID: 22400762}
   viewportTransform: {fileID: 22485076}
-  debugManager: {fileID: 11452418}
   logItemNormalColor1: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.697}
   logItemNormalColor2: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0.697}
   logItemSelectedColor: {r: 0.32941177, g: 0.4862745, b: 0.7058824, a: 0.697}
@@ -2529,7 +2530,7 @@ CanvasGroup:
   m_GameObject: {fileID: 183006}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 0
+  m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1001 &100100000
